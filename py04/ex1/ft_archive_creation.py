@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===\n")
     line1 = "[ENTRY 001] New quantum algorithm discovered\n"
     line2 = "[ENTRY 002] Efficiency increased by 347%\n"
