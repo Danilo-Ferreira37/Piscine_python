@@ -1,15 +1,17 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Optional
+from typing import Any
 
 class DataProcessor(ABC):
     @abstractmethod
     def process(self, data: Any) -> str:
         pass
+
     @abstractmethod
     def validate(self, data: Any) -> bool:
         pass
-    def format_output(self, result: str):
-        pass
+
+    def format_output(self, result: str) -> str:
+        return f"Output: {result}"
 
 
 class NumericProcessor(DataProcessor):
@@ -20,7 +22,7 @@ class NumericProcessor(DataProcessor):
             return f"Processed {len(data)} numeric values, sum={sum(data)}, avg={(sum(data) / len(data)):.1f}"
         return "Error: Value received is invalid"
 
-    def print_info(self):
+    def print_info(self) -> None:
             try:
                 if self.data == None:
                     raise ValueError
@@ -39,8 +41,8 @@ class NumericProcessor(DataProcessor):
                     return False
             return validation
 
-    def format_output(self, result: str):
-        return f"Output: {result}"
+    def format_output(self, result: str) -> str:
+        return super().format_output(result)
 
 
 class TextProcessor(DataProcessor):
@@ -51,7 +53,7 @@ class TextProcessor(DataProcessor):
             return f"Processed text: {len(data)} characters, {len(data.split())} words"
         return "Error: Text is invalid"
 
-    def print_info(self):
+    def print_info(self) -> None:
             try:
                 if self.data == None:
                     raise ValueError
@@ -65,8 +67,8 @@ class TextProcessor(DataProcessor):
             return True
        return False
 
-    def format_output(self, result: str):
-        return f"Output: {result}"
+    def format_output(self, result: str) -> str:
+        return super().format_output(result)
 
 
 class LogProcessor(DataProcessor):
@@ -74,18 +76,17 @@ class LogProcessor(DataProcessor):
         self.data = None
         if self.validate(data):
             self.data = data
-            level, message = data.split(":", 1)
-            level = level.strip()
+            level , message = data.split(":", 1)
             message = message.strip()
             if "ERROR:" in data:
-                return f"[ALERT] {level} level detected: {message}"
+                return f"[ALERT] ERROR level detected: {message}"
             elif "INFO:" in data:
-                return f"[INFO] {level} level detected: {message}"
+                return f"[INFO] INFO level detected: {message}"
             elif "WARNING:" in data:
-                return f"[ALERT] {level} level detected: {message}"
+                return f"[ALERT] WARNING level detected: {message}"
         return "Error: This is a invalid log"
 
-    def print_info(self):
+    def print_info(self) -> None:
         try:
             if self.data == None:
                 raise ValueError
@@ -99,11 +100,11 @@ class LogProcessor(DataProcessor):
             return True
         return False
 
-    def format_output(self, result: str):
-        return f"Output: {result}"
+    def format_output(self, result: str) -> str:
+        return super().format_output(result)
 
 
-def main():
+def main() -> None:
     try:
         print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
         print("Initializing Numeric Processor...")
