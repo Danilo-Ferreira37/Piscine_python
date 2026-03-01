@@ -1,7 +1,7 @@
 if __name__ == "__main__":
     print("=== Game Analytics Dashboard ===\n")
     print("=== List Comprehension Examples ===")
-    players = [ 
+    players = [
         {"name": "alice", "score": 2300, "active": True},
         {"name": "bob", "score": 1800, "active": True},
         {"name": "charlie", "score": 2150, "active": True},
@@ -36,10 +36,11 @@ if __name__ == "__main__":
         {"name": "charlie", "region": "central", "achievements": "first_kill"},
         {"name": "alice", "region": "east", "achievements": "level_10"}
     ]
-    regions = {"west": False, "north": True, "north": True, "east": True, "south": False, "central": True}
+    regions = {"west": False, "north": True, "north": True, "east": True,
+               "south": False, "central": True}
     uni_players = {n["name"] for n in players}
     uni_achieve = {n["achievements"] for n in players}
-    uni_regions ={r for r in regions if regions[r]}
+    uni_regions = {r for r in regions if regions[r]}
     print(f"Unique players: {uni_players}")
     print(f"Unique achievements: {uni_achieve}")
     print(f"Active regions: {uni_regions}")
@@ -52,10 +53,12 @@ if __name__ == "__main__":
     scores = {p["score"] for p in players}
     more_score = max(scores)
     top_play = [p["name"] for p in players if p["score"] == more_score][0]
-    top_achieve = [p["achievements"] for p in players if p["score"] == more_score][0]
+    top_achieve = [p["achievements"] for p in players
+                   if p["score"] == more_score][0]
 
     print("\n ===Combined Analysis ===")
     print(f"Total players {len(uni_players)}")
     print(f"Total unique achievements: {len(achieves)}")
     print(f"Average score: {sum(scores_doubles) / 2 / len(uni_players):.1f}")
-    print(f"Top performer: {top_play} ({more_score} points, {top_achieve} achievements)")
+    print(f"Top performer: {top_play} ({more_score} "
+          f"points, {top_achieve} achievements)")

@@ -1,4 +1,3 @@
-
 def main() -> None:
     print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===\n")
     try:
@@ -10,6 +9,6 @@ def main() -> None:
     except FileNotFoundError:
         print("ERROR: Storage vault not found. Run data generator first.")
 
-    
+
 if __name__ == "__main__":
     main()

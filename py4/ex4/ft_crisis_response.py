@@ -36,5 +36,6 @@ def main() -> None:
     finally:
         print("All crisis scenarios handled successfully. Archives secure.")
 
+
 if __name__ == "__main__":
     main()

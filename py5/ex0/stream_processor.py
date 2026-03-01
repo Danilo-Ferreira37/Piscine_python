@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+
 class DataProcessor(ABC):
     @abstractmethod
     def process(self, data: Any) -> str:
@@ -19,23 +20,24 @@ class NumericProcessor(DataProcessor):
         self.data = None
         if self.validate(data):
             self.data = data
-            return f"Processed {len(data)} numeric values, sum={sum(data)}, avg={(sum(data) / len(data)):.1f}"
+            return (f"Processed {len(data)} numeric values, sum={sum(data)},"
+                    f" avg={(sum(data) / len(data)):.1f}")
         return "Error: Value received is invalid"
 
     def print_info(self) -> None:
-            try:
-                if self.data == None:
-                    raise ValueError
-                print(f"Processing data: {self.data}")
-                print("Validation: Numeric data verified")
-            except ValueError:
-                pass
+        try:
+            if self.data is None:
+                raise ValueError
+            print(f"Processing data: {self.data}")
+            print("Validation: Numeric data verified")
+        except ValueError:
+            pass
 
     def validate(self, data: Any) -> bool:
         validation = False
-        if type(data) == list or type(data) == set or type(data) == tuple:
+        if type(data) is list or type(data) is set or type(data) is tuple:
             for n in data:
-                if type(n) == int or type(n) == float:
+                if type(n) is int or type(n) is float:
                     validation = True
                 else:
                     return False
@@ -50,22 +52,23 @@ class TextProcessor(DataProcessor):
         self.data = None
         if self.validate(data):
             self.data = data
-            return f"Processed text: {len(data)} characters, {len(data.split())} words"
+            return (f"Processed text: {len(data)} characters,"
+                    f" {len(data.split())} words")
         return "Error: Text is invalid"
 
     def print_info(self) -> None:
-            try:
-                if self.data == None:
-                    raise ValueError
-                print(f'Processing data: "{self.data}"')
-                print("Validation: Text data verified")
-            except ValueError:
-                pass
+        try:
+            if self.data is None:
+                raise ValueError
+            print(f'Processing data: "{self.data}"')
+            print("Validation: Text data verified")
+        except ValueError:
+            pass
 
     def validate(self, data: Any) -> bool:
-       if type(data) == str:
+        if type(data) is str:
             return True
-       return False
+        return False
 
     def format_output(self, result: str) -> str:
         return super().format_output(result)
@@ -76,7 +79,8 @@ class LogProcessor(DataProcessor):
         self.data = None
         if self.validate(data):
             self.data = data
-            level , message = data.split(":", 1)
+            level, message = data.split(":", 1)
+            level = level
             message = message.strip()
             if "ERROR:" in data:
                 return f"[ALERT] ERROR level detected: {message}"
@@ -88,7 +92,7 @@ class LogProcessor(DataProcessor):
 
     def print_info(self) -> None:
         try:
-            if self.data == None:
+            if self.data is None:
                 raise ValueError
             print(f'Processing data: "{self.data}"')
             print("Validation: Log entry verified")
@@ -96,7 +100,8 @@ class LogProcessor(DataProcessor):
             pass
 
     def validate(self, data: Any) -> bool:
-        if type(data) == str and ("INFO:" in data or "ERROR:" in data or "WARNING:" in data):
+        if type(data) is str and ("INFO:" in data
+                                  or "ERROR:" in data or "WARNING:" in data):
             return True
         return False
 
@@ -118,7 +123,7 @@ def main() -> None:
         result = text.process("Hello Nexus World")
         text.print_info()
         print(text.format_output(result))
-        
+
         print("\nInitializing Log Processor...")
         log = LogProcessor()
         result = log.process("WARNING: The variable is not being used.")
@@ -134,8 +139,8 @@ def main() -> None:
         result = t.process("Daniloo here")
         print(f"Result 2: {result}")
 
-        l = LogProcessor()
-        result= l.process("INFO: System ready")
+        lg = LogProcessor()
+        result = lg.process("INFO: System ready")
         print(f"Result 3: {result}")
         print("\nFoundation systems online. Nexus ready for advanced streams.")
 

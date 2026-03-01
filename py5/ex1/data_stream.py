@@ -124,10 +124,6 @@ class StreamProcessor():
     def __init__(self, streams: List) -> None:
         self.streams = streams
 
-    def all_process(self):
-
-        
-
 
 def main() -> None:
     print("=== CODE NEXUS - POLYMORPHIC STREAM SYSTEM ===\n")

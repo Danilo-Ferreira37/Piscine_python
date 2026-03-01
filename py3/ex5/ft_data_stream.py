@@ -1,5 +1,6 @@
 from typing import Generator
 
+
 def events_generator(n_events: int) -> Generator[str, None, None]:
     event_number = 0
     player = ["alice", "bob", "charlie"]
@@ -8,13 +9,13 @@ def events_generator(n_events: int) -> Generator[str, None, None]:
 
     for i in range(n_events):
         p = player[i % len(player)]
-        l = level[i % len(level)]
+        lev = level[i % len(level)]
         a = acts[i % len(acts)]
-        yield f"Event {event_number + 1}: Player {p} (level {l}) {a}"
+        yield f"Event {event_number + 1}: Player {p} (level {lev}) {a}"
         event_number += 1
         if i == 2:
             break
-    yield("...\n")
+    yield ("...\n")
 
 
 def fibonacci(n: int) -> Generator[int, None, None]:
@@ -36,7 +37,7 @@ def list_primes(n: int) -> Generator[int, None, None]:
     count = 0
     prime = 2
 
-    while(count < n):
+    while (count < n):
         condition = True
         div = 2
         while div * div <= prime:
@@ -76,13 +77,13 @@ if __name__ == "__main__":
         print(f"Level-up events: {level}")
         print("\nMemory usage: Constant (streaming)")
         print("Processing time: 0.045 seconds")
-        
+
         fibs = ""
         for n in fibonacci(10):
             fibs += str(n)
             fibs += ", "
         fibs = fibs[:-2]
-        
+
         primes = ""
         for n in list_primes(5):
             primes += str("s")
