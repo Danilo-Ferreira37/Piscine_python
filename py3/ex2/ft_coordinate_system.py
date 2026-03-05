@@ -2,7 +2,7 @@ import sys
 import math
 
 
-def parsing_coordinate(p1: tuple, p2: tuple):
+def parsing_coordinate(p1: tuple, p2: tuple) -> None:
     try:
         size = 0
         for arg in p2:

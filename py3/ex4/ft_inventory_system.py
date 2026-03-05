@@ -30,10 +30,10 @@ if __name__ == "__main__":
                 print(f"{item}: {inventory[item]} unit (0%)")
             elif inventory[item] > 1:
                 print(f"{item}: {inventory[item]} units "
-                      f"({inventory[item] /  total * 100:.1f}%)")
+                      f"({inventory[item] / total * 100:.1f}%)")
             else:
                 print(f"{item}: {inventory[item]} unit "
-                      f"({inventory[item] /  total * 100:.1f}%)")
+                      f"({inventory[item] / total * 100:.1f}%)")
 
         print("\n === Inventory Statistics ===")
 

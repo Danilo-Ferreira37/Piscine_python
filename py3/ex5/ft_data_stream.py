@@ -86,11 +86,13 @@ if __name__ == "__main__":
 
         primes = ""
         for n in list_primes(5):
-            primes += str("s")
+            primes += str(n)
             primes += ", "
         primes = primes[:-2]
         print("\n=== Generator Demonstration ===")
         print(f"Fibonacci sequence (first 10): {fibs}")
         print(f"Prime numbers (first 5): {primes}")
     except ValueError as e:
+        print(e)
+    except TypeError as e:
         print(e)

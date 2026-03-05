@@ -110,35 +110,60 @@ class LogProcessor(DataProcessor):
 
 
 def main() -> None:
+    print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
+    print("Initializing Numeric Processor...")
     try:
-        print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
-        print("Initializing Numeric Processor...")
         num = NumericProcessor()
         result = num.process([1, 2, 3, 4, 5])
         num.print_info()
         print(num.format_output(result))
+    except ValueError:
+        print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
+    try:
         print("\nInitializing Text Processor...")
         text = TextProcessor()
         result = text.process("Hello Nexus World")
         text.print_info()
         print(text.format_output(result))
+    except ValueError:
+        print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
+    try:
         print("\nInitializing Log Processor...")
         log = LogProcessor()
         result = log.process("WARNING: The variable is not being used.")
         log.print_info()
         print(log.format_output(result))
+    except ValueError:
+        print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
+    try:
         print("\n=== Polymorphic Processing Demo ===")
         n = NumericProcessor()
         result = n.process([2, 2, 2])
         print(f"Result 1: {result}")
+    except ValueError:
+        print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
+    try:
         t = TextProcessor()
         result = t.process("Daniloo here")
         print(f"Result 2: {result}")
+    except ValueError:
+        print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
+    try:
         lg = LogProcessor()
         result = lg.process("INFO: System ready")
         print(f"Result 3: {result}")
@@ -146,6 +171,8 @@ def main() -> None:
 
     except ValueError:
         print("ERROR: General system failure")
+    except TypeError:
+        print("Error: The function has to receive a parameter")
 
 
 if __name__ == "__main__":

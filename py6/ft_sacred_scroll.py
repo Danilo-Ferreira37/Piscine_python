@@ -1,4 +1,4 @@
-import alchemy 
+import alchemy
 
 
 def main() -> None:
@@ -27,10 +27,13 @@ def main() -> None:
 
     try:
         print("alchemy.create_air():", alchemy.create_air())
-    except AttributeError as e:
+    except AttributeError:
         print("alchemy.create_air(): AttributeError - not exposed")
 
-    print("Package metadata:")
-    print(alchemy.__version__, "\n", alchemy.__author__ end)
+    print("\nPackage metadata:")
+    print("Version:", alchemy.__version__)
+    print("Author:", alchemy.__author__)
+
+
 if __name__ == "__main__":
     main()
