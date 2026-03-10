@@ -25,14 +25,14 @@ class CreatureCard(Card):
 
     def play(self, game_state: dict) -> dict:
         val = 0
-        if "mana" in game_state:
-            val = game_state.get("mana")
-        elif "Mana" in game_state:
-            val = game_state.get("Mana")
-        else:
-            return "The key has to be mana!"
+        if "mana" not in game_state and "Mana" not in game_state:
+            return {"error": "The key has to be mana!"}
+
+        mana_key = "mana" if "mana" in game_state else "Mana"
+        val = game_state[mana_key]
 
         if self.is_playable(val):
+            game_state[mana_key] -= self.cost
             return {
                 'card_played': self.name,
                 'mana_used': self.cost,

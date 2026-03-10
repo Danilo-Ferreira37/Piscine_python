@@ -21,6 +21,7 @@ class Card(ABC):
         self.name = name
         self.cost = cost
         self.rarity = rarity
+        self.card_type = self.__class__.__name__
 
     @abstractmethod
     def play(self, game_state: dict) -> dict:
@@ -34,6 +35,6 @@ class Card(ABC):
         }
 
     def is_playable(self, available_mana: int) -> bool:
-        if available_mana > 5:
+        if available_mana >= self.cost:
             return True
         return False
