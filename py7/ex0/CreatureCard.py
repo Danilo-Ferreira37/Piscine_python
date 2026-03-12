@@ -16,6 +16,9 @@ class CreatureCard(Card):
         except ValueError as e:
             print(e)
 
+    def __str__(self):
+        return f"{self.name} ({self.cost})"
+
     def get_card_info(self):
         output_info = super().get_card_info()
         output_info['type'] = 'Creature'

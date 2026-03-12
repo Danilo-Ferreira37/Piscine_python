@@ -23,6 +23,12 @@ class SpellCard(Card):
             "insufficient mana": game_state.get("Mana")
         }
 
+    def get_card_info(self):
+        output_info = super().get_card_info()
+        output_info['type'] = 'Creature'
+        output_info['effect_type'] = self.effect_type
+        return output_info
+
     def resolve_effect(self, targets: list) -> dict:
         pass
 

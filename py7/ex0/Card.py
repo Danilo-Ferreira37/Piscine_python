@@ -19,9 +19,17 @@ class EffectType(Enum):
 class Card(ABC):
     def __init__(self, name: str, cost: int, rarity: Rarity) -> None:
         self.name = name
+        if not isinstance(cost, int):
+            raise ValueError("Error: The cost of card has to be a integer")
         self.cost = cost
         self.rarity = rarity
         self.card_type = self.__class__.__name__
+
+    def __str__(self):
+        return f"{self.name} ({self.cost})"
+
+    def __repr__(self):
+        return self.__str__()
 
     @abstractmethod
     def play(self, game_state: dict) -> dict:

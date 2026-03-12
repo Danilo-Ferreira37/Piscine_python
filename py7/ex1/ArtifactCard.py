@@ -5,7 +5,7 @@ class ArtifactCard(Card):
         super().__init__(name, cost, rarity)
         self.durability = durability
         self.effect = effect
-
+    
     def play(self, game_state: dict) -> dict:
         val = 0
         if "mana" not in game_state and "Mana" not in game_state:
@@ -23,5 +23,13 @@ class ArtifactCard(Card):
         return {
             "insufficient mana": game_state.get("Mana")
         }
+    
+    def get_card_info(self):
+        output_info = super().get_card_info()
+        output_info['type'] = 'Creature'
+        output_info['durability'] = self.durability
+        output_info['effect'] = self.effect
+        return output_info
+
     def activate_ability(self) -> dict:
         pass
