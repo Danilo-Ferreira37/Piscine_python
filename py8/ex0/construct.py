@@ -7,7 +7,7 @@ def is_venv() -> bool:
     return (sys.prefix != sys.base_prefix)
 
 
-def main():
+def main() -> None:
     if is_venv():
         print("\nMATRIX STATUS: Welcome to the construct\n")
         print(f"Current Python: {sys.executable}")
