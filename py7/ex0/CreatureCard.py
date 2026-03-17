@@ -3,7 +3,7 @@ from ex0.Card import Card, Rarity
 
 class CreatureCard(Card):
     def __init__(self, name: str, cost: int, rarity:
-                 Rarity, attack: int, health: int):
+                 Rarity, attack: int, health: int) -> None:
         try:
             super().__init__(name, cost, rarity)
             if attack < 0:
@@ -16,10 +16,10 @@ class CreatureCard(Card):
         except ValueError as e:
             print(e)
 
-    def __str__(self):
+    def __str__(self) -> None:
         return f"{self.name} ({self.cost})"
 
-    def get_card_info(self):
+    def get_card_info(self) -> dict:
         output_info = super().get_card_info()
         output_info['type'] = 'Creature'
         output_info['attack'] = self.attack

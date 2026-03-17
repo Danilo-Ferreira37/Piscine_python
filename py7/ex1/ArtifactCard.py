@@ -1,7 +1,8 @@
 from ex0.Card import Card
 
 class ArtifactCard(Card):
-    def __init__(self, name: str, cost: int, rarity: str, durability: int, effect: str):
+    def __init__(self, name: str, cost: int,
+                 rarity: str, durability: int, effect: str) -> None:
         super().__init__(name, cost, rarity)
         self.durability = durability
         self.effect = effect
@@ -24,7 +25,7 @@ class ArtifactCard(Card):
             "insufficient mana": game_state.get("Mana")
         }
     
-    def get_card_info(self):
+    def get_card_info(self) -> dict:
         output_info = super().get_card_info()
         output_info['type'] = 'Creature'
         output_info['durability'] = self.durability
@@ -32,4 +33,4 @@ class ArtifactCard(Card):
         return output_info
 
     def activate_ability(self) -> dict:
-        pass
+        return {"ability": "active"}

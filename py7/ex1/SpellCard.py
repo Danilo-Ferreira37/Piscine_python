@@ -1,7 +1,18 @@
-from ex0.Card import Card, EffectType
+from ex0.Card import Card, Rarity
+from enum import Enum
+
+
+class EffectType(Enum):
+    DAMAGE = "damage"
+    HEAL = "heal"
+    BUFF = "buff"
+    DEBUFF = "debuff"
+
 
 class SpellCard(Card):
-    def __init__(self, name: str, cost: int, rarity: str, effect_type: EffectType):
+    def __init__(self, name: str,
+                 cost: int, rarity: Rarity,
+                 effect_type: EffectType) -> None:
         super().__init__(name, cost, rarity)
         self.effect_type = effect_type
 
@@ -23,12 +34,11 @@ class SpellCard(Card):
             "insufficient mana": game_state.get("Mana")
         }
 
-    def get_card_info(self):
+    def get_card_info(self) -> dict:
         output_info = super().get_card_info()
         output_info['type'] = 'Creature'
         output_info['effect_type'] = self.effect_type
         return output_info
 
     def resolve_effect(self, targets: list) -> dict:
-        pass
-
+        return {targets: self.effect_type}

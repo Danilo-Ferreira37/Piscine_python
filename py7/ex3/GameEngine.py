@@ -34,4 +34,3 @@ class GameEngine():
             'total_damage': self.strategy.total_damage,
             'cards_created': self.n_cards
         }
-

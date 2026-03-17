@@ -7,13 +7,7 @@ class Rarity(Enum):
     RARE = "Rare"
     EPIC = "Epic"
     LEGENDARY = "Legendary"
-
-
-class EffectType(Enum):
-    DAMAGE = "damage"
-    HEAL = "heal"
-    BUFF = "buff"
-    DEBUFF = "debuff"
+    UNCOMMON = "Uncommon"
 
 
 class Card(ABC):
@@ -21,14 +15,17 @@ class Card(ABC):
         self.name = name
         if not isinstance(cost, int):
             raise ValueError("Error: The cost of card has to be a integer")
+        if not rarity in Rarity.__members__.values():
+            raise ValueError("Error: Rarity is invalid,"
+                  " the rarity has to be Common, Rare, Epic, Legendary")
         self.cost = cost
-        self.rarity = rarity
+        self.rarity = rarity.value
         self.card_type = self.__class__.__name__
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name} ({self.cost})"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
 
     @abstractmethod
