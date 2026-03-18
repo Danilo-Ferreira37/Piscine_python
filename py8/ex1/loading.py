@@ -41,10 +41,6 @@ def analise():
     data = np.random.randn(1000)
     df = pd.DataFrame({"matrix_values": data})
 
-    mean_val = df["matrix_values"].mean()
-    std_val = df["matrix_values"].std()
-    print(f"Mean: {mean_val:.4f}, Std: {std_val:.4f}")
-
     print("Generating visualization...")
     plt.hist(df["matrix_values"], bins=30, color="red", alpha=0.7)
     plt.title("Matrix Data Distribution")

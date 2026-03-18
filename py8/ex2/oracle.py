@@ -15,7 +15,7 @@ def main():
     print("Configuration loaded:")
     if mode == 'development':
         print(f"Mode: {mode}")
-    if mode == 'production':
+    elif mode == 'production':
         print(f"Mode: {mode}")
     else:
         print("Error: invalid mode")
