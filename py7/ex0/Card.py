@@ -15,7 +15,7 @@ class Card(ABC):
         self.name = name
         if not isinstance(cost, int):
             raise ValueError("Error: The cost of card has to be a integer")
-        if not rarity in Rarity.__members__.values():
+        if rarity not in Rarity.__members__.values():
             raise ValueError("Error: Rarity is invalid,"
                   " the rarity has to be Common, Rare, Epic, Legendary")
         self.cost = cost

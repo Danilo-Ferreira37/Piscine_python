@@ -1,5 +1,5 @@
 from ex4.TournamentCard import TournamentCard
-import random
+
 
 class TournamentPlataform():
     def __init__(self) -> None:
@@ -32,11 +32,11 @@ class TournamentPlataform():
                 player1 = card
             if card.id == card2_id:
                 player2 = card
-        if player1 == None or player2 == None:
+        if player1 is None or player2 is None:
             raise ValueError("Error: ID don't found!")
         if size < 2:
             raise ValueError("Error: Not suficient cards regitred")
-        
+
         while True:
             player1.attack(player2)
             if player2.health <= 0:
@@ -65,21 +65,22 @@ class TournamentPlataform():
 
     def get_leaderboard(self) -> list:
         pos = 1
-        ordenados = sorted(self.cards, key=lambda obj: obj.rating, reverse=True)
+        ordenados = sorted(self.cards,
+                           key=lambda obj: obj.rating, reverse=True)
         output = []
 
         for card in ordenados:
-            output.append(f"{pos}. {card.name} - Rating: {card.rating} ({card.wins} - {card.losses})")
+            output.append(f"{pos}. {card.name} - Rating: {card.rating} "
+                          f"({card.wins} - {card.losses})")
             card.rank = pos
             pos += 1
-        
         return output
 
     def generate_tournament_report(self) -> dict:
         avg = 0
         for c in self.cards:
             avg += c.rating
-        
+
         try:
             avg / self.total_cards
         except ZeroDivisionError:
@@ -88,4 +89,4 @@ class TournamentPlataform():
                 'matches_played': self.t_match,
                 'avg_rating': avg,
                 'platform_status': 'active'
-                }         
+                }

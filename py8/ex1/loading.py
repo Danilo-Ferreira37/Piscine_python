@@ -26,7 +26,7 @@ def installation_tutorial() -> None:
 
     print("For Poetry installation enter:")
     print("curl -sSL https://install.python-poetry.org | python3 -")
-    print("poetry intall")
+    print("poetry install")
     print("Then executes:\npoetry run python loading.py")
 
 
@@ -42,7 +42,7 @@ def analise():
     df = pd.DataFrame({"matrix_values": data})
 
     mean_val = df["matrix_values"].mean()
-    std_val = df["matrix_values"].std() 
+    std_val = df["matrix_values"].std()
     print(f"Mean: {mean_val:.4f}, Std: {std_val:.4f}")
 
     print("Generating visualization...")
@@ -94,4 +94,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

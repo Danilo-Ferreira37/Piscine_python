@@ -1,6 +1,7 @@
 from ex0.CreatureCard import CreatureCard
 from ex0.Card import Rarity
 
+
 def main() -> None:
     try:
         print("\n=== DataDeck Card Foundation ===\n")
@@ -17,7 +18,7 @@ def main() -> None:
 
         enemie = "Goblin Warrior"
         print(f"\nFire Dragon attacks {enemie}:")
-        print(f"Attack result: {creature.attack_target(enemie)}")
+        print(f'Attack result: {creature.attack_target(enemie)}')
 
         insu_mana = 3
         print(f"\nTesting insuficient mana ({insu_mana} available)")
@@ -31,7 +32,7 @@ def main() -> None:
         print(e)
     except Exception as e:
         print(e)
-    
+
 
 if __name__ == "__main__":
     main()

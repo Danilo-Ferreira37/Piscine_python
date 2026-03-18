@@ -5,14 +5,14 @@ from ex2.Magical import Magical
 
 class EliteCard(Card, Combatable, Magical):
     def __init__(self, name: str, cost: int, rarity: Rarity,
-                 healty: int, damage:int, combate_type: str,
+                 healty: int, damage: int, combate_type: str,
                  mana: int) -> None:
         try:
             super().__init__(name, cost, rarity)
             if not damage > 0:
                 raise ValueError("Damage has to be positive")
             if not healty > 0:
-                raise ValueError("Healty has to be positive")    
+                raise ValueError("Healty has to be positive")
             if not mana > 0:
                 raise ValueError("Healty has to be positive")
             self.damage = damage
@@ -57,7 +57,7 @@ class EliteCard(Card, Combatable, Magical):
             incoming_damage + 0
         except TypeError:
             return {"Error": "Damage must be a number"}
-        
+
         if self.defense < incoming_damage:
             damage_blocked = self.defense
         else:
@@ -73,7 +73,10 @@ class EliteCard(Card, Combatable, Magical):
             }
 
     def get_combat_stats(self) -> None:
-        return {'name': self.name, 'defense': self.defense, 'health': self.health}
+        return {'name': self.name,
+                'defense': self.defense,
+                'health': self.health
+                }
 
     def cast_spell(self, spell_name: str, targets: list) -> dict:
         mana_used = 4
@@ -88,6 +91,6 @@ class EliteCard(Card, Combatable, Magical):
     def channel_mana(self, amount: int) -> None:
         self.mana += amount
         return {'channeled': amount, 'total_mana': self.mana}
-    
+
     def get_magic_stats(self) -> None:
         return {'name': self.name, 'mana': self.mana}

@@ -29,7 +29,7 @@ class Deck():
         for card in self.cards:
             if card.name == card_name:
                 self.cards.remove(card)
-                self.total -= 1 
+                self.total -= 1
                 return True
         return False
 
@@ -54,6 +54,8 @@ class Deck():
             avg = 0
         except TypeError:
             pass
-        return {'Deck status': {'total_cards': self.total, 'criatures': self.creatures,
-                                'spells': self.spells, 'artifacts': self.artifacts,
+        return {'Deck status': {'total_cards': self.total,
+                                'criatures': self.creatures,
+                                'spells': self.spells,
+                                'artifacts': self.artifacts,
                                 'avg_cost': avg}}

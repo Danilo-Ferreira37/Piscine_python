@@ -17,4 +17,3 @@ class Rankable(ABC):
     @abstractmethod
     def get_rank_info(self) -> dict:
         pass
-

@@ -37,7 +37,6 @@ class TournamentCard (Card, Combatable, Rankable):
     def get_rank_info(self) -> dict:
         return {"rank": self.rank}
 
-
     def play(self, game_state: dict) -> dict:
         val = 0
         if "mana" not in game_state and "Mana" not in game_state:
@@ -57,7 +56,6 @@ class TournamentCard (Card, Combatable, Rankable):
             "insufficient mana": game_state.get("Mana")
         }
 
-
     def attack(self, target) -> dict:
         damage = max(0, self.damage - target.defense)
         target.health -= damage
@@ -72,7 +70,7 @@ class TournamentCard (Card, Combatable, Rankable):
             incoming_damage + 0
         except TypeError:
             return {"Error": "Damage must be a number"}
-        
+
         if self.defense < incoming_damage:
             damage_blocked = self.defense
         else:
@@ -92,7 +90,7 @@ class TournamentCard (Card, Combatable, Rankable):
                 "health": self.health,
                 "defense": self.defense,
                 "damage": self.damage
-        }
+                }
 
     def get_tournament_stats(self) -> dict:
         return {"name": self.name,
@@ -102,4 +100,4 @@ class TournamentCard (Card, Combatable, Rankable):
                 "health": self.health,
                 "defense": self.defense,
                 "damage": self.damage
-        }
+                }

@@ -1,5 +1,3 @@
-from ex0.Card import Card 
-from ex1.SpellCard import SpellCard
 from abc import ABC, abstractmethod
 
 

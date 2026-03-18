@@ -1,6 +1,7 @@
 from ex3.GameStrategy import GameStrategy
 import random
 
+
 class AgressiveStrategy(GameStrategy):
     def __init__(self):
         self.cards_played = []
@@ -25,7 +26,7 @@ class AgressiveStrategy(GameStrategy):
                 'targets_attacked': ['Enemy Player'],
                 'damage_dealt': self.total_damage
         }
-            
+
     def get_strategy_name(self) -> str:
         return super().get_strategy_name()
 
