@@ -26,11 +26,12 @@ def installation_tutorial() -> None:
 
     print("For Poetry installation enter:")
     print("curl -sSL https://install.python-poetry.org | python3 -")
+    print("export PATH='$HOME/.local/bin:$PATH'")
     print("poetry install")
     print("Then executes:\npoetry run python loading.py")
 
 
-def analise():
+def analise() -> None:
     import numpy as np
     import pandas as pd
     import matplotlib.pyplot as plt

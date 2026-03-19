@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 
-def main():
+def main() -> None:
     print("\nORACLE STATUS: Reading the Matrix...\n")
     load_dotenv()
 
