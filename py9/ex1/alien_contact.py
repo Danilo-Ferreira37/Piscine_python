@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ValidationError
 from datetime import datetime
 
 
@@ -75,7 +75,8 @@ def main():
              print(e.errors()[0]['msg'])
         except TypeError as e:
              print(e)
-
+        except ValidationError as e:
+            print(e.errors()[0]["msg"])
 
 if __name__ == "__main__":
      main()
