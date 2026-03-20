@@ -1,4 +1,11 @@
-from pydantic import BaseModel, Field, ValidationError
+import sys
+try:
+    from pydantic import BaseModel, Field, ValidationError
+except ModuleNotFoundError:
+    print("For executes the file you must to enter in the venv")
+    print("to enter:")
+    print("Source venv/bin/activate")
+    sys.exit()
 
 
 class SpaceStation(BaseModel):
@@ -8,7 +15,7 @@ class SpaceStation(BaseModel):
     power_level: float = Field(ge=0.0, le=100.0)
     oxygen_level: float = Field(ge=0.0, le=100.0)
     last_maintenance: bool = Field(default=True)
-    notes:str = Field(default=None, max_length=200)
+    notes: str = Field(default=None, max_length=200)
 
 
 def main() -> None:
@@ -16,10 +23,10 @@ def main() -> None:
     print("========================================")
     try:
         station = SpaceStation(station_id="ID_3737",
-                 name="Space Station very nice",
-                 crew_size=10,
-                 power_level=6.9,
-                 oxygen_level=98.3,
+                               name="Space Station very nice",
+                               crew_size=10,
+                               power_level=6.9,
+                               oxygen_level=98.3,
                  )
         print("Valid station created:")
         print(f"ID: {station.station_id}")
@@ -32,10 +39,10 @@ def main() -> None:
         print("\n========================================")
         print("Expected validation error:")
         SpaceStation(station_id="ID_3737",
-                 name="Space Station very nice",
-                 crew_size=50,
-                 power_level=6.9,
-                 oxygen_level=98.3,)
+                     name="Space Station very nice",
+                     crew_size=50,
+                     power_level=6.9,
+                     oxygen_level=98.3,)
     except ValidationError as e:
         print(e.errors()[0]["msg"])
 

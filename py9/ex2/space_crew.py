@@ -1,6 +1,13 @@
-from enum import Enum
-from pydantic import BaseModel, Field, model_validator
-from datetime import datetime
+import sys
+try:
+    from enum import Enum
+    from pydantic import BaseModel, Field, model_validator
+    from datetime import datetime
+except ModuleNotFoundError:
+    print("For executes the file you must to enter in the venv")
+    print("To enter:")
+    print("Source venv/bin/activate")
+    sys.exit()
 
 
 class Rank(Enum):
@@ -28,10 +35,8 @@ class SpaceMission(BaseModel):
     launch_date: datetime
     duration_days: int = Field(ge=1, le=3650)
     crew: list[CrewMember] = Field(max_length=12, min_length=1)
-    #VERIFICA SE A LISTA TEM QUE SER OBRIGATORIAMENTE FORMADA POR CREW MEMBERS!!!!!
     mission_status: str = Field(default="planned")
     budget_millions: float = Field(ge=1.0, le=10000.0)
-    #TESTA SE É OBRIGATORIO UM METODO RETORNAR SELF
     @model_validator(mode='after')
     def mission_validator_rules(self) -> object:
         leadership = False
@@ -64,11 +69,82 @@ class SpaceMission(BaseModel):
 def main() -> None:
     print("Space Mission Crew Validation")
     print("=========================================")
-    m1 = CrewMember()
-    m2 = CrewMember()
-    m3 = CrewMember()
+    try:
+        m1 = CrewMember(member_id='CM001',
+                        name='Erwin Smith',
+                        rank=Rank.COMMANDER,
+                        age= 43,
+                        specialization= 'Mission Command',
+                        years_experience= 25,
+                        is_active= True)
+        m2 = CrewMember(member_id='CM002',
+                        name='Danilo Ferreira',
+                        rank=Rank.LIEUTENANT,
+                        age= 32,
+                        specialization= 'Navigation',
+                        years_experience= 3,
+                        is_active= True)
+        m3 = CrewMember(member_id='CM003',
+                        name='Raissa Benamou',
+                        rank=Rank.OFFICER,
+                        age= 43,
+                        specialization= 'Engineering',
+                        years_experience= 14,
+                        is_active= True)
 
-    mission = SpaceMission()
+        mission = SpaceMission(mission_id="M3401",
+                              mission_name="Mission Very Dangerous",
+                              destination="Pandora",
+                              launch_date=datetime(2008, 3, 24),
+                              duration_days=367,
+                              crew=[m1, m2, m3],
+                              budget_millions=9000.524
+                           )
+        print("Valid mission created:")
+        print(f"Mission: {mission.mission_name}")
+        print(f"ID: {mission.mission_id}")
+        print(f"Destination: {mission.destination}")
+        print(f"Duration: {mission.duration_days} days")
+        print(f"Buget: ${mission.budget_millions}M")
+        print(f"Crew size: {len(mission.crew)}")
+        print("Crew members:")
+        for m in mission.crew:
+            print(f"- {m.name} ({m.rank.value}) - {m.specialization}")
+
+        print("\n=========================================")
+        print("Expected validation error:")
+        m1 = CrewMember(member_id='CM001',
+                        name='Erwin Smith',
+                        rank=Rank.COMMANDER,
+                        age= 43,
+                        specialization= 'Mission Command',
+                        years_experience= 25,
+                        is_active= True)
+        m2 = CrewMember(member_id='CM002',
+                        name='Danilo Ferreira',
+                        rank=Rank.LIEUTENANT,
+                        age= 32,
+                        specialization= 'Navigation',
+                        years_experience= 3,
+                        is_active= True)
+        m3 = CrewMember(member_id='CM003',
+                        name='Raissa Benamou',
+                        rank=Rank.OFFICER,
+                        age= 43,
+                        specialization= 'Engineering',
+                        years_experience= 24,
+                        is_active= True)
+
+        mission = SpaceMission(mission_id="M3401",
+                               mission_name="Mission Very Dangerous",
+                               destination="Pandora",
+                               launch_date=datetime(2008, 3, 24),
+                               duration_days=367,
+                               crew=[m1, m2, m3],
+                               budget_millions=9000.524
+                           )
+    except ValueError as e:
+        print(e.errors()[0]['msg'])
 
 
 if __name__ == "__main__":

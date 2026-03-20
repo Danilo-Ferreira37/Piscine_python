@@ -1,6 +1,13 @@
-from enum import Enum
-from pydantic import BaseModel, Field, model_validator, ValidationError
-from datetime import datetime
+import sys
+try:
+    from enum import Enum
+    from pydantic import BaseModel, Field, model_validator, ValidationError
+    from datetime import datetime
+except ModuleNotFoundError:
+    print("For executes the file you must to enter in the venv")
+    print("to enter:")
+    print("Source venv/bin/activate")
+    sys.exit()
 
 
 class ContactType(Enum):
@@ -44,14 +51,14 @@ def main():
         print("Valid contact report:")
         try:
             ctc = AlienContact(contact_id="AC_2024_001",
-                                   timestamp=datetime(2008, 3, 24),
-                                   location="agualva-cacem",
-                                   contact_type=ContactType.RADIO,
-                                   signal_strength= 4,
-                                   duration_minutes=1000,
-                                   witness_count=80,
-                                   is_verified=True
-                                   )
+                               timestamp=datetime(2008, 3, 24),
+                               location="agualva-cacem",
+                               contact_type=ContactType.RADIO,
+                               signal_strength= 4,
+                               duration_minutes=1000,
+                               witness_count=80,
+                               is_verified=True
+                               )
             print(f"ID: {ctc.contact_id}")
             print(f"Type: {ctc.contact_type.value}")
             print(f"Location: {ctc.location}")
@@ -64,13 +71,13 @@ def main():
             print("\n======================================")
             print("Expected validation error:")
             AlienContact(contact_id="AC_2024_001",
-                                   timestamp=datetime(2008, 3, 24),
-                                   location="agualva-cacem",
-                                   contact_type=ContactType.TELEPATHIC,
-                                   signal_strength= 4,
-                                   duration_minutes=1000,
-                                   witness_count=2,
-                                   is_verified=True)
+                         timestamp=datetime(2008, 3, 24),
+                         location="agualva-cacem",
+                         contact_type=ContactType.TELEPATHIC,
+                         signal_strength= 4,
+                         duration_minutes=1000,
+                         witness_count=2,
+                         is_verified=True)
         except ValueError as e:
              print(e.errors()[0]['msg'])
         except TypeError as e:
