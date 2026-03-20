@@ -43,7 +43,7 @@ def analise() -> None:
     df = pd.DataFrame({"matrix_values": data})
 
     print("Generating visualization...")
-    plt.hist(df["matrix_values"], bins=30, color="red", alpha=0.7)
+    plt.hist(df["matrix_values"], bins=30, color="green", alpha=0.7)
     plt.title("Matrix Data Distribution")
     plt.xlabel("Values")
     plt.ylabel("Frequency")
