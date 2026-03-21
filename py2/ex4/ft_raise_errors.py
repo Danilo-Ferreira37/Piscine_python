@@ -1,18 +1,24 @@
-def  check_plant_health(plant_name: str, water_level: int, sunlight_hours: int) -> str | None:
+def check_plant_health(plant_name: str, water_level: int,
+                       sunlight_hours: int) -> str | None:
     try:
-        if plant_name == None or plant_name.strip() == "":
+        if plant_name is None or plant_name.strip() == "":
             raise ValueError("Error: Plant name cannot be empty!\n")
         elif water_level > 10:
-            raise ValueError(f"Error: Water level {water_level} is too high (max 10)\n")
+            raise ValueError(f"Error: Water level {water_level} is t"
+                             f"oo high (max 10)\n")
         elif water_level < 1:
-            raise ValueError(f"Error: Water level {water_level} is too low (min 1)\n")
+            raise ValueError(f"Error: Water level "
+                             f"{water_level} is too low (min 1)\n")
         elif sunlight_hours < 2:
-            raise ValueError(f"Error: Sunlight hours {sunlight_hours} is too low (min 2)\n")
+            raise ValueError(f"Error: Sunlight hours {sunlight_hours}"
+                             f" is too low (min 2)\n")
         elif sunlight_hours > 12:
-            raise ValueError(f"Error: Sunlight hours {sunlight_hours} is too high (max 12)\n")
+            raise ValueError(f"Error: Sunlight hours {sunlight_hours}"
+                             f" is too high (max 12)\n")
         return f"Plant '{plant_name}' is healthy!\n"
     except ValueError as e:
         print(e)
+
 
 def test_plant_checks() -> None:
     print("Testing good values...")
@@ -26,6 +32,7 @@ def test_plant_checks() -> None:
 
     print("Testing bad sunlight hours...")
     check_plant_health("tomato", 6, 0)
+
 
 if __name__ == "__main__":
     print("=== Garden Plant Health Checker ===\n")

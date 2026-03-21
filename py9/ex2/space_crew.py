@@ -12,7 +12,7 @@ except ModuleNotFoundError:
 
 class Rank(Enum):
     CADET = "cadet"
-    OFFICER ="officer"
+    OFFICER = "officer"
     LIEUTENANT = "lieutenant"
     CAPTAIN = "captain"
     COMMANDER = "commander"
@@ -37,6 +37,7 @@ class SpaceMission(BaseModel):
     crew: list[CrewMember] = Field(max_length=12, min_length=1)
     mission_status: str = Field(default="planned")
     budget_millions: float = Field(ge=1.0, le=10000.0)
+
     @model_validator(mode='after')
     def mission_validator_rules(self) -> object:
         leadership = False
@@ -62,7 +63,7 @@ class SpaceMission(BaseModel):
                     xp += 1
             if xp < (qnty / 2):
                 raise ValueError("In long missions (> 365 days) "
-                "need 50% experienced crew (5+ years)")
+                                 "need 50% experienced crew (5+ years)")
         return self
 
 
@@ -73,33 +74,33 @@ def main() -> None:
         m1 = CrewMember(member_id='CM001',
                         name='Erwin Smith',
                         rank=Rank.COMMANDER,
-                        age= 43,
-                        specialization= 'Mission Command',
-                        years_experience= 25,
-                        is_active= True)
+                        age=43,
+                        specialization='Mission Command',
+                        years_experience=25,
+                        is_active=True)
         m2 = CrewMember(member_id='CM002',
                         name='Danilo Ferreira',
                         rank=Rank.LIEUTENANT,
-                        age= 32,
-                        specialization= 'Navigation',
-                        years_experience= 3,
-                        is_active= True)
+                        age=32,
+                        specialization='Navigation',
+                        years_experience=3,
+                        is_active=True)
         m3 = CrewMember(member_id='CM003',
                         name='Raissa Benamou',
                         rank=Rank.OFFICER,
-                        age= 43,
-                        specialization= 'Engineering',
-                        years_experience= 14,
-                        is_active= True)
+                        age=43,
+                        specialization='Engineering',
+                        years_experience=14,
+                        is_active=True)
 
         mission = SpaceMission(mission_id="M3401",
-                              mission_name="Mission Very Dangerous",
-                              destination="Pandora",
-                              launch_date=datetime(2008, 3, 24),
-                              duration_days=367,
-                              crew=[m1, m2, m3],
-                              budget_millions=9000.524
-                           )
+                               mission_name="Mission Very Dangerous",
+                               destination="Pandora",
+                               launch_date=datetime(2008, 3, 24),
+                               duration_days=367,
+                               crew=[m1, m2, m3],
+                               budget_millions=9000.524
+                               )
         print("Valid mission created:")
         print(f"Mission: {mission.mission_name}")
         print(f"ID: {mission.mission_id}")
@@ -116,24 +117,24 @@ def main() -> None:
         m1 = CrewMember(member_id='CM001',
                         name='Erwin Smith',
                         rank=Rank.COMMANDER,
-                        age= 43,
-                        specialization= 'Mission Command',
-                        years_experience= 25,
-                        is_active= True)
+                        age=43,
+                        specialization='Mission Command',
+                        years_experience=25,
+                        is_active=True)
         m2 = CrewMember(member_id='CM002',
                         name='Danilo Ferreira',
                         rank=Rank.LIEUTENANT,
-                        age= 32,
-                        specialization= 'Navigation',
-                        years_experience= 3,
-                        is_active= True)
+                        age=32,
+                        specialization='Navigation',
+                        years_experience=3,
+                        is_active=True)
         m3 = CrewMember(member_id='CM003',
                         name='Raissa Benamou',
                         rank=Rank.OFFICER,
-                        age= 43,
-                        specialization= 'Engineering',
-                        years_experience= 24,
-                        is_active= True)
+                        age=43,
+                        specialization='Engineering',
+                        years_experience=24,
+                        is_active=True)
 
         mission = SpaceMission(mission_id="M3401",
                                mission_name="Mission Very Dangerous",
@@ -142,7 +143,7 @@ def main() -> None:
                                duration_days=367,
                                crew=[m1, m2, m3],
                                budget_millions=9000.524
-                           )
+                               )
     except ValueError as e:
         print(e.errors()[0]['msg'])
 

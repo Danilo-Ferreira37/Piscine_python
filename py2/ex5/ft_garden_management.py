@@ -19,20 +19,24 @@ class GardenManager:
         self.plants = []
         try:
             for plant in plants:
-                if type(plant["name"]) != str and plant["name"] != None:
-                    raise PlantNameError(f"Error adding plant: '{plant["name"]}' is invalid plant!")
-                elif plant["name"] == None or plant["name"].strip() == "":
-                    raise PlantNameError(f"Error adding plant: Plant name cannot be empty!")
+                if (type(plant["name"]) is not str
+                        and plant["name"] is not None):
+                    raise PlantNameError(f"Error adding plant: '"
+                                         f"{plant["name"]}' is invalid plant!")
+                elif plant["name"] is None or plant["name"].strip() == "":
+                    raise PlantNameError("Error adding plant: Plant"
+                                         " name cannot be empty!")
                 self.plants += [plant]
                 print(f"added {plant["name"]} successfully")
 
         except PlantNameError as e:
             print(e)
+
     def water_plants(self):
         print("Opening watering system")
         try:
             for plant in self.plants:
-                plant["water"] += 1 
+                plant["water"] += 1
                 print(f"Watering {plant["name"]} - success")
 
         finally:
@@ -42,25 +46,36 @@ class GardenManager:
         try:
             for plant in self.plants:
                 if plant["water"] > 10:
-                    raise WaterLevelError(f"Error checking {plant["name"]}: Water level {plant["water"]} is too high (max 10)\n")
+                    raise WaterLevelError(f"Error checking {plant["name"]}"
+                                          f": Water level {plant["water"]}"
+                                          f" is too high (max 10)\n")
                 elif plant["water"] < 1:
-                    raise WaterLevelError(f"Error checking {plant["name"]}: Water level {plant["water"]} is too low (min 1)\n")
+                    raise WaterLevelError(f"Error checking {plant["name"]}"
+                                          f": Water level {plant["water"]}"
+                                          f" is too low (min 1)\n")
                 elif plant["light"] < 2:
-                    raise SunLightError(f"Error checking {plant["name"]}: Sunlight hours {plant["light"]} is too low (min 2)\n")
+                    raise SunLightError(f"Error checking {plant["name"]}"
+                                        f": Sunlight hours {plant["light"]}"
+                                        f" is too low (min 2)\n")
                 elif plant["light"] > 12:
-                    raise SunLightError(f"Error checking {plant["name"]}: Sunlight hours {plant["light"]} is too high (max 12)\n")
-                print(f"{plant["name"]}: healtly (water: {plant["water"]}, sun: {plant["light"]})")
-        except(WaterLevelError, SunLightError) as e:
+                    raise SunLightError(f"Error checking {plant["name"]}"
+                                        f": Sunlight hours {plant["light"]}"
+                                        f" is too high (max 12)\n")
+                print(f"{plant["name"]}: healtly (water: {plant["water"]}"
+                      f", sun: {plant["light"]})")
+        except (WaterLevelError, SunLightError) as e:
             print(e)
 
-def  test_garden_management():
+
+def test_garden_management():
     try:
         manager = GardenManager()
 
         print("Adding plants to garden...")
-        manager.add_plant(plants = [{"name": "tomato", "water": 5 ,"light": 4 },
-                                {"name":"lettuce","water": 3 ,"light": 1 },
-                                {"name": None,"water": 22 ,"light": 9 }])
+        manager.add_plant(plants=[
+            {"name": "tomato", "water": 5, "light": 4},
+            {"name": "lettuce", "water": 3, "light": 1},
+            {"name": None, "water": 22, "light": 9}])
 
         print("\nWatering plants...")
         manager.water_plants()

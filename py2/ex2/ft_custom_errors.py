@@ -19,6 +19,7 @@ def test_plant(plant_condition: str) -> None:
     except PlantError as e:
         print(f"Caught {type(e).__name__}: {e}\n")
 
+
 def test_irrigation(tank: int) -> None:
     print("Testing WaterError...")
     try:
@@ -28,6 +29,7 @@ def test_irrigation(tank: int) -> None:
     except WaterError as e:
         print(f"Caught {type(e).__name__}: {e}\n")
 
+
 def all_erros(condition: str, tank: int) -> None:
     print("Testing catching all garden errors...")
     try:
@@ -36,13 +38,14 @@ def all_erros(condition: str, tank: int) -> None:
         print("Plants it's fine")
     except GardenError as e:
         print(f"Caught garden error: {e}!")
-    
+
     try:
         if tank <= 2:
             raise WaterError("Not enough water in the tank!")
         print("Water system OK")
     except GardenError as e:
         print(f"Caught garden error: {e}!")
+
 
 if __name__ == "__main__":
     print("=== Custom Garden Errors Demo ===")

@@ -26,8 +26,7 @@ def main() -> None:
                                name="Space Station very nice",
                                crew_size=10,
                                power_level=6.9,
-                               oxygen_level=98.3,
-                 )
+                               oxygen_level=98.3,)
         print("Valid station created:")
         print(f"ID: {station.station_id}")
         print(f"Name: {station.name}")

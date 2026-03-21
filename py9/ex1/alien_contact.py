@@ -28,15 +28,15 @@ class AlienContact(BaseModel):
     message_received: str = Field(default=None, max_length=500)
     is_verified: bool = Field(default=False)
 
-    @model_validator(mode = 'after')
+    @model_validator(mode='after')
     def custom_validator_rules(self) -> object:
         if not self.contact_id.startswith("AC"):
             raise ValueError("Contact ID must start with 'AC'.")
-        if (self.contact_type == ContactType.PHYSICAL 
-            and not self.is_verified):
+        if (self.contact_type == ContactType.PHYSICAL
+                and not self.is_verified):
             raise ValueError("Physical contact reports must be verified.")
         if (self.contact_type == ContactType.TELEPATHIC
-            and self.witness_count < 3):
+                and self.witness_count < 3):
             raise ValueError("Telepathic contact requires at least "
                              "3 witnesses.")
         if self.signal_strength > 7.0 and not self.message_received:
@@ -46,44 +46,45 @@ class AlienContact(BaseModel):
 
 
 def main():
-        print("Alien Contact Log Validation")
-        print("======================================")
-        print("Valid contact report:")
-        try:
-            ctc = AlienContact(contact_id="AC_2024_001",
-                               timestamp=datetime(2008, 3, 24),
-                               location="agualva-cacem",
-                               contact_type=ContactType.RADIO,
-                               signal_strength= 4,
-                               duration_minutes=1000,
-                               witness_count=80,
-                               is_verified=True
-                               )
-            print(f"ID: {ctc.contact_id}")
-            print(f"Type: {ctc.contact_type.value}")
-            print(f"Location: {ctc.location}")
-            print(f"Signal: {ctc.signal_strength}")
-            print(f"Duration: {ctc.duration_minutes} minutes")
-            print(f"Witnesses: {ctc.witness_count}")
-            if ctc.message_received:
-                 print(f"Message: {ctc.message_received}")
+    print("Alien Contact Log Validation")
+    print("======================================")
+    print("Valid contact report:")
+    try:
+        ctc = AlienContact(contact_id="AC_2024_001",
+                           timestamp=datetime(2008, 3, 24),
+                           location="agualva-cacem",
+                           contact_type=ContactType.RADIO,
+                           signal_strength=4,
+                           duration_minutes=1000,
+                           witness_count=80,
+                           is_verified=True
+                           )
+        print(f"ID: {ctc.contact_id}")
+        print(f"Type: {ctc.contact_type.value}")
+        print(f"Location: {ctc.location}")
+        print(f"Signal: {ctc.signal_strength}")
+        print(f"Duration: {ctc.duration_minutes} minutes")
+        print(f"Witnesses: {ctc.witness_count}")
+        if ctc.message_received:
+            print(f"Message: {ctc.message_received}")
 
-            print("\n======================================")
-            print("Expected validation error:")
-            AlienContact(contact_id="AC_2024_001",
-                         timestamp=datetime(2008, 3, 24),
-                         location="agualva-cacem",
-                         contact_type=ContactType.TELEPATHIC,
-                         signal_strength= 4,
-                         duration_minutes=1000,
-                         witness_count=2,
-                         is_verified=True)
-        except ValueError as e:
-             print(e.errors()[0]['msg'])
-        except TypeError as e:
-             print(e)
-        except ValidationError as e:
-            print(e.errors()[0]["msg"])
+        print("\n======================================")
+        print("Expected validation error:")
+        AlienContact(contact_id="AC_2024_001",
+                     timestamp=datetime(2008, 3, 24),
+                     location="agualva-cacem",
+                     contact_type=ContactType.TELEPATHIC,
+                     signal_strength=4,
+                     duration_minutes=1000,
+                     witness_count=2,
+                     is_verified=True)
+    except ValueError as e:
+        print(e.errors()[0]['msg'])
+    except TypeError as e:
+        print(e)
+    except ValidationError as e:
+        print(e.errors()[0]["msg"])
+
 
 if __name__ == "__main__":
-     main()
+    main()

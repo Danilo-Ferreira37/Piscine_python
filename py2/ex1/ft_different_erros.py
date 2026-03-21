@@ -26,13 +26,15 @@ def garden_operations() -> None:
 
     try:
         int("abc")
-    except (ValueError, ZeroDivisionError) as e:
+    except (ValueError, ZeroDivisionError):
         print("Testing multiple errors together...")
-        print(f"Caught an error, but program continues!\n")
+        print("Caught an error, but program continues!\n")
+
 
 def test_error_types() -> None:
     garden_operations()
     print("All error types tested successfully!")
+
 
 if __name__ == "__main__":
     print("=== Garden Error Types Demo ===\n")
