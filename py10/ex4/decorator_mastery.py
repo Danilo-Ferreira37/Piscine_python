@@ -93,7 +93,7 @@ def main() -> None:
     print(m_guild.validate_mage_name("Robot 3737"))
     print(m_guild.cast_spell("Lightning", 15))
     print(m_guild.cast_spell("Blood Curse", 4))
-  
+
 
 if __name__ == "__main__":
     main()
