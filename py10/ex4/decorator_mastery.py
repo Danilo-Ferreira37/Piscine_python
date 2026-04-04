@@ -37,7 +37,7 @@ def power_validator(min_power: int) -> callable:
 
 
 def retry_spell(max_attempts: int) -> callable:
-    current_attempt = 0
+    current_attempt = 1
 
     def decorator(func: callable) -> callable:
 
@@ -47,7 +47,7 @@ def retry_spell(max_attempts: int) -> callable:
                 return func(*args, **kwargs)
             except Exception:
                 nonlocal current_attempt
-                if current_attempt >= max_attempts:
+                if current_attempt > max_attempts:
                     return (f"Spell casting failed after "
                             f"{max_attempts} attempts")
                 print(f"Spell failed, retrying... ("
@@ -93,7 +93,7 @@ def main() -> None:
     print(m_guild.validate_mage_name("Robot 3737"))
     print(m_guild.cast_spell("Lightning", 15))
     print(m_guild.cast_spell("Blood Curse", 4))
-
+  
 
 if __name__ == "__main__":
     main()
