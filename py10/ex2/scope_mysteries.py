@@ -13,8 +13,12 @@ def mage_counter() -> callable:
 
 def spell_accumulator(initial_power: int) -> callable:
     total = initial_power
+    if not isinstance(initial_power, int):
+        raise ValueError("Error: The power has to be a integer!")
 
     def power_accum(add_power) -> int:
+        if not isinstance(add_power, int):
+            raise ValueError("Error: The power has to be a integer!")
         nonlocal total
         total += add_power
         return total
@@ -44,17 +48,24 @@ def memory_vault() -> dict[str, callable]:
 
 
 def main() -> None:
-    print("\nTesting mage counter...")
-    counter = mage_counter()
-    print("Call 1:", counter())
-    print("Call 2:", counter())
-    print("Call 3:", counter())
+    try:
+        print("\nTesting mage counter...")
+        counter = mage_counter()
+        print("Call 1:", counter())
+        print("Call 2:", counter())
+        print("Call 3:", counter())
 
-    print("\nTesting enchantment factory...")
-    flame_item = enchantment_factory("Flaming")
-    freeze_item = enchantment_factory("Freeze")
-    print(flame_item("Sword"))
-    print(freeze_item("Shield"))
+        print("\nTesting enchantment factory...")
+        flame_item = enchantment_factory("Flaming")
+        freeze_item = enchantment_factory("Freeze")
+        print(flame_item("Sword"))
+        print(freeze_item("Shield"))
+    except TypeError as e:
+        print(e)
+    except KeyError as e:
+        print(f"Error: The keyword has to be {e}")
+    except ValueError as e:
+        print(e)
 
 
 if __name__ == "__main__":

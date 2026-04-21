@@ -48,15 +48,21 @@ def is_target_alive(target: str) -> str:
 
 
 def main() -> None:
-    print("\nTesting spell combiner...")
-    combined = spell_combiner(fireball_spell, heal_spell)
-    output = combined("Dragon")
-    print(f"Combined spell result: {output[0]}, {output[1]}")
+    try:
+        print("\nTesting spell combiner...")
+        combined = spell_combiner(fireball_spell, heal_spell)
+        output = combined("Dragon")
+        print(f"Combined spell result: {output[0]}, {output[1]}")
 
-    print("\nTesting power amplifier...")
-    amplifier = power_amplifier(dragon_power, 3)
-    print(f"Original: {dragon_power()}, Amplifield: {amplifier()}")
-
+        print("\nTesting power amplifier...")
+        amplifier = power_amplifier(dragon_power, 3)
+        print(f"Original: {dragon_power()}, Amplifield: {amplifier()}")
+    except TypeError as e:
+        print(e)
+    except KeyError as e:
+        print(f"Error: The keyword has to be {e}")
+    except ValueError as e:
+        print(e)
 
 if __name__ == "__main__":
     main()

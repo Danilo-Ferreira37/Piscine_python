@@ -19,6 +19,8 @@ def spell_timer(func: callable) -> callable:
 
 
 def power_validator(min_power: int) -> callable:
+    if not isinstance(min_power, int):
+        raise ValueError("Error: The minimun power has to be a integer!")
 
     def decorator(func: callable) -> callable:
 
@@ -84,15 +86,20 @@ class MageGuild:
 
 
 def main() -> None:
-    print("\nTesting spell timer...")
-    print(f"Result: {fireball()}")
+    try:
+        print("\nTesting spell timer...")
+        print(f"Result: {fireball()}")
 
-    print("\nTesting MageGuild...")
-    m_guild = MageGuild()
-    print(m_guild.validate_mage_name("Danilo Ferreira"))
-    print(m_guild.validate_mage_name("Robot 3737"))
-    print(m_guild.cast_spell("Lightning", 15))
-    print(m_guild.cast_spell("Blood Curse", 4))
+        print("\nTesting MageGuild...")
+        m_guild = MageGuild()
+        print(m_guild.validate_mage_name("Danilo Ferreira"))
+        print(m_guild.validate_mage_name("Robot 3737"))
+        print(m_guild.cast_spell("Lightning", 15))
+        print(m_guild.cast_spell("Blood Curse", 4))
+    except TypeError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
 
 
 if __name__ == "__main__":
