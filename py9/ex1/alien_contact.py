@@ -1,12 +1,12 @@
+from datetime import datetime
+from enum import Enum
 import sys
 try:
-    from enum import Enum
     from pydantic import BaseModel, Field, model_validator, ValidationError
-    from datetime import datetime
 except ModuleNotFoundError:
     print("For executes the file you must to enter in the venv")
-    print("to enter:")
-    print("Source venv/bin/activate")
+    print("to enter in the root repository:")
+    print("source venv/bin/activate")
     sys.exit()
 
 

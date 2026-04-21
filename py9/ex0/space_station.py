@@ -1,10 +1,10 @@
-import sys
 try:
+    import sys
     from pydantic import BaseModel, Field, ValidationError
 except ModuleNotFoundError:
     print("For executes the file you must to enter in the venv")
-    print("to enter:")
-    print("Source venv/bin/activate")
+    print("to enter in the root repository:")
+    print("source venv/bin/activate")
     sys.exit()
 
 
@@ -44,6 +44,10 @@ def main() -> None:
                      oxygen_level=98.3,)
     except ValidationError as e:
         print(e.errors()[0]["msg"])
+    except TypeError as e:
+        print(e)
+    except Exception:
+        print("Fatal error!")
 
 
 if __name__ == "__main__":
