@@ -1,13 +1,6 @@
 from enum import Enum
 from datetime import datetime
-import sys
-try:
-    from pydantic import BaseModel, Field, model_validator
-except ModuleNotFoundError:
-    print("For executes the file you must to enter in the venv")
-    print("to enter in the root repository:")
-    print("source venv/bin/activate")
-    sys.exit()
+from pydantic import BaseModel, Field, model_validator
 
 
 class Rank(Enum):

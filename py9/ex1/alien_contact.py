@@ -1,13 +1,6 @@
 from datetime import datetime
 from enum import Enum
-import sys
-try:
-    from pydantic import BaseModel, Field, model_validator, ValidationError
-except ModuleNotFoundError:
-    print("For executes the file you must to enter in the venv")
-    print("to enter in the root repository:")
-    print("source venv/bin/activate")
-    sys.exit()
+from pydantic import BaseModel, Field, model_validator, ValidationError
 
 
 class ContactType(Enum):
