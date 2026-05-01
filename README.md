@@ -1,78 +1,135 @@
 # Piscine_python
 
-Repository containing my solutions and exercises from a **Python Piscine** (organized by days/modules: `py0` → `py10`).
+*This project has been created as part of the 42 curriculum by dosorio-*
 
-The goal of this repo is to keep a clean, browsable history of the learning path: from basic syntax and CLI programs to small packages/modules and simple data/plotting exercises.
+A collection of Python exercises organized by modules/days (`py0` → `py10`). Each module contains multiple exercises (`ex0`, `ex1`, …) and small scripts meant to be executed directly with `python3`.
+
+This repository is meant to be **practical and navigable**: you can quickly jump to a module, run an exercise, and review the concepts being practiced.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Repository Structure](#repository-structure)
+- [Structure](#structure)
+- [Modules (py0 → py10)](#modules-py0--py10)
 - [How to run](#how-to-run)
-  - [1) Running a single exercise](#1-running-a-single-exercise)
-  - [2) Virtual environment (recommended)](#2-virtual-environment-recommended)
-  - [3) Extra dependencies (py8/ex1)](#3-extra-dependencies-py8ex1)
-- [Highlights (examples)](#highlights-examples)
-- [Conventions](#conventions)
-- [Troubleshooting](#troubleshooting)
+  - [Run a single script](#run-a-single-script)
+  - [Virtual environment (recommended)](#virtual-environment-recommended)
+  - [Extra dependencies (py8/ex1)](#extra-dependencies-py8ex1)
+- [Notable exercises](#notable-exercises)
 - [Author](#author)
 
 ---
 
-## Overview
+## Structure
 
-This repository is organized by folders named `py0`, `py1`, ..., `py10`.
+```
+py0/
+  ex0/
+  ex1/
+  ...
+py1/
+  ex0/
+  ...
+...
+py10/
+  ex0/
+  ...
+```
 
-Inside each `pyN` folder there are multiple exercises `ex0`, `ex1`, ... (the exact set varies by module).
-
-Most exercises are small, self-contained Python scripts meant to be run directly with `python3`.
+Some modules include additional folders or packaging/config examples (e.g. `py6/alchemy`, `py8/ex1/pyproject.toml`).
 
 ---
 
-## Repository Structure
+## Modules (py0 → py10)
 
-High-level layout (simplified):
+Below is a high-level description of what you can expect from each module in this repo.
 
-- `py0/` … `py10/` — modules/days
-  - `ex0/`, `ex1/`, … — individual exercises
+> Note: Exercises are grouped in folders `ex0`, `ex1`, etc. The exact content is in the code.
+
+### `py0` — First steps & basic functions
+Introductory exercises focused on getting comfortable with:
+- writing functions and printing output
+- running simple scripts
 
 Example:
+- `py0/ex0/ft_hello_garden.py` — defines `ft_hello_garden()` and prints a greeting.
 
-- `py0/ex0/ft_hello_garden.py`
+### `py1` — Basic scripting and progression
+Exercises continuing the fundamentals and reinforcing:
+- basic Python control flow and functions
+- small self-contained scripts per exercise
 
-Some modules may contain extra folders (packages) and config files. For example:
+### `py2` — Building confidence with small programs
+A set of intermediate beginner exercises (still script-based) typically practicing:
+- manipulating values and lists
+- writing reusable helpers
+- simple error handling patterns
 
-- `py6/alchemy/` — small Python package/module
-- `py8/ex1/pyproject.toml` — Poetry configuration
-- `py8/ex1/requirements.txt` — pip dependencies
+### `py3` — CLI programs and analytics-style scripts
+Focuses more on programs that are executed from the terminal with arguments.
+
+Example:
+- `py3/ex1/ft_score_analytics.py` — reads numeric scores from `sys.argv` and prints total, average, max/min, and range, with validation.
+
+### `py4` — Continued practice (more structure)
+A continuation module that usually increases complexity and encourages writing cleaner, more structured code across exercises.
+
+### `py5` — More patterns & problem solving
+Exercises that typically require combining multiple ideas and building slightly larger scripts.
+
+### `py6` — Imports, packages, and modular code (`alchemy`)
+This module includes a small package-style structure and multiple scripts.
+
+Highlights:
+- `py6/alchemy/` — a Python package example:
+  - `elements.py` — simple element factories (`create_fire`, `create_water`, `create_earth`, `create_air`).
+  - `potions.py` — composes elements to build potion messages.
+  - `grimoire/validator.py` — validates ingredient strings.
+  - `grimoire/spellbook.py` — records or rejects spells based on ingredient validation.
+
+This module is good for understanding:
+- relative imports (`from .elements import ...`)
+- package layout (`__init__.py`, subpackages)
+- splitting responsibilities into modules.
+
+### `py7` — Advanced progression
+A later module continuing the piscine progression. Content is organized by exercises in `py7/ex*`.
+
+### `py8` — Virtual environments, dependencies, and tooling ("Matrix")
+This module contains exercises around environments and third‑party libraries.
+
+Highlights:
+- `py8/ex0/construct.py` — detects if you're inside a venv and prints guidance.
+- `py8/ex1/loading.py` — checks dependencies via `importlib`, suggests installation steps, and generates a histogram plot (`matrix_analysis.png`).
+- `py8/ex1/requirements.txt` — pip dependencies.
+- `py8/ex1/pyproject.toml` — Poetry configuration (`matrix-loader`).
+
+### `py9` — Late-stage exercises
+Another advanced module with exercises in `py9/ex*`.
+
+### `py10` — Final module / consolidation
+Final set of exercises (`py10/ex0` → `py10/ex4`) aimed at consolidating everything learned.
 
 ---
 
 ## How to run
 
-### 1) Running a single exercise
-
+### Run a single script
 From the repository root:
 
 ```bash
-python3 py0/ex0/ft_hello_garden.py
+python3 path/to/script.py
 ```
 
-If the file is meant to be executed as a script, it usually includes an `if __name__ == "__main__":` section.
-
-Some exercises accept CLI arguments. Example (`py3/ex1/ft_score_analytics.py`):
+Example:
 
 ```bash
+python3 py0/ex0/ft_hello_garden.py
 python3 py3/ex1/ft_score_analytics.py 10 20 30
 ```
 
----
-
-### 2) Virtual environment (recommended)
-
-For Python exercises that may require third-party packages, use a venv:
+### Virtual environment (recommended)
 
 ```bash
 python3 -m venv .venv
@@ -80,22 +137,13 @@ source .venv/bin/activate
 python3 --version
 ```
 
-To exit:
+Exit:
 
 ```bash
 deactivate
 ```
 
----
-
-### 3) Extra dependencies (py8/ex1)
-
-The folder `py8/ex1` contains an exercise that checks/install guides for dependencies such as:
-
-- `requests`
-- `pandas`
-- `matplotlib`
-- `numpy`
+### Extra dependencies (py8/ex1)
 
 Using **pip**:
 
@@ -116,35 +164,13 @@ poetry run python loading.py
 
 ---
 
-## Highlights (examples)
+## Notable exercises
 
-A few examples you can try quickly:
-
-- **Hello exercise**
-  - `py0/ex0/ft_hello_garden.py`
-
-- **CLI analytics (scores)**
-  - `py3/ex1/ft_score_analytics.py` (accepts numeric CLI args)
-
-- **Virtualenv / dependency checks + plotting demo**
-  - `py8/ex0/construct.py` (detects if you are inside a venv)
-  - `py8/ex1/loading.py` (checks packages and generates a `matrix_analysis.png`)
-
----
-
-## Conventions
-
-- Folder naming: `pyN/exM/...`
-- Most scripts are intended to be run with `python3`.
-- When a script prints output, it usually goes to standard output.
-
----
-
-## Troubleshooting
-
-- **Permission denied**: run with `python3 file.py` (don’t rely on executable bit).
-- **Module not found**: activate a virtual environment and install dependencies.
-- **Wrong Python version**: try `python3 --version` and run with the same interpreter you used for installing packages.
+- `py0/ex0/ft_hello_garden.py` — very first steps (functions + print)
+- `py3/ex1/ft_score_analytics.py` — CLI program using `sys.argv` + basic stats
+- `py6/alchemy/*` — package structure + relative imports + modular organization
+- `py8/ex0/construct.py` — venv detection
+- `py8/ex1/loading.py` — dependency check + simple data analysis/plot
 
 ---
 
