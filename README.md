@@ -2,6 +2,8 @@
 
 *This project has been created as part of the 42 curriculum by dosorio-*
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
 A collection of Python exercises organized by modules/days (`py0` → `py10`). Each module contains multiple exercises (`ex0`, `ex1`, …) and small scripts meant to be executed directly with `python3`.
 
 This repository is meant to be **practical and navigable**: you can quickly jump to a module, run an exercise, and review the concepts being practiced.
